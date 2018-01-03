@@ -36,7 +36,10 @@ describe('writeIndex()', () => {
 import bar from './bar';
 import foo from './foo';
 
-export default { bar, foo };
+export default {
+  bar,
+  foo,
+};
     `));
   });
 
@@ -56,7 +59,9 @@ export default { bar, foo };
 
 import foo from './foo';
 
-export default { foo };
+export default {
+  foo,
+};
     `));
   });
 });

@@ -22,7 +22,9 @@ describe('createIndexCode()', () => {
 
 import foo from './foo';
 
-export default { foo };
+export default {
+  foo,
+};
     `));
   });
   it('describes multiple children', () => {
@@ -34,7 +36,10 @@ export default { foo };
 import bar from './bar';
 import foo from './foo';
 
-export default { bar, foo };
+export default {
+  bar,
+  foo,
+};
     `));
   });
   context('file with extension', () => {
@@ -46,7 +51,9 @@ export default { bar, foo };
 
 import foo from './foo';
 
-export default { foo };
+export default {
+  foo,
+};
       `));
     });
   });
@@ -60,7 +67,10 @@ export default { foo };
 import bar from './bar';
 import foo from './foo';
 
-export default { bar, foo };
+export default {
+  bar,
+  foo,
+};
       `));
     });
   });
@@ -78,7 +88,10 @@ export default { bar, foo };
 import bar from './bar';
 import foo from './foo';
 
-export default { bar, foo };
+export default {
+  bar,
+  foo,
+};
       `));
     });
   });

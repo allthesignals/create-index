@@ -19,7 +19,11 @@ const buildExportBlock = (files) => {
     return 'import ' + _.camelCase(safeVariableName(fileName)) + ' from \'./' + fileName + '\';';
   });
 
-  return importBlock.join('\n') + '\n\nexport default { ' + safeFiles.join(', ') + ' };';
+  const exportReferences = _.map(safeFiles, (fileName) => {
+    return '  ' + fileName + ',\n';
+  });
+
+  return importBlock.join('\n') + '\n\nexport default {\n' + exportReferences.join('') + '};';
 };
 
 export default (filePaths, options = {}) => {
