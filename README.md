@@ -1,3 +1,7 @@
+# fork of create-index
+
+Merges some code originally [proposed](https://github.com/gajus/create-index/pull/16/files) by @laggingreflex
+
 # create-index
 
 [![NPM version](http://img.shields.io/npm/v/create-index.svg?style=flat-square)](https://www.npmjs.org/package/create-index)

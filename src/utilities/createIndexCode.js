@@ -11,15 +11,15 @@ const safeVariableName = (fileName) => {
 };
 
 const buildExportBlock = (files) => {
-  let importBlock;
-
-  importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
+  const safeFiles = _.map(files, (fileName) => {
+    return _.camelCase(safeVariableName(fileName));
   });
 
-  importBlock = importBlock.join('\n');
+  const importBlock = _.map(safeFiles, (fileName) => {
+    return 'import ' + _.camelCase(safeVariableName(fileName)) + ' from \'./' + fileName + '\';';
+  });
 
-  return importBlock;
+  return importBlock.join('\n') + '\n\nexport default { ' + safeFiles.join(', ') + ' };';
 };
 
 export default (filePaths, options = {}) => {
