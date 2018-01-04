@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import {stripExtension} from './readDirectory';
 
 const safeVariableName = (fileName) => {
   const indexOfDot = fileName.indexOf('.');
@@ -15,7 +16,7 @@ const buildExportBlock = (files) => {
     return _.camelCase(safeVariableName(fileName));
   });
 
-  const importBlock = _.map(safeFiles, (fileName) => {
+  const importBlock = _.map(files, (fileName) => {
     return 'import ' + _.camelCase(safeVariableName(fileName)) + ' from \'./' + fileName + '\';';
   });
 
@@ -29,6 +30,7 @@ const buildExportBlock = (files) => {
 export default (filePaths, options = {}) => {
   let code;
   let configCode;
+  let interceptedPaths;
 
   code = '';
   configCode = '';
@@ -43,14 +45,22 @@ export default (filePaths, options = {}) => {
     code += '\n';
   }
 
+  if (options.noExtension) {
+    interceptedPaths = _.map(filePaths, (fileName) => {
+      return stripExtension(fileName);
+    });
+  } else {
+    interceptedPaths = filePaths;
+  }
+
   if (options.config && _.size(options.config) > 0) {
     configCode += ' ' + JSON.stringify(options.config);
   }
 
   code += '// @create-index' + configCode + '\n\n';
 
-  if (filePaths.length) {
-    const sortedFilePaths = filePaths.sort();
+  if (interceptedPaths.length) {
+    const sortedFilePaths = interceptedPaths.sort();
 
     code += buildExportBlock(sortedFilePaths) + '\n\n';
   }

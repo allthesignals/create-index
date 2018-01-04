@@ -27,7 +27,7 @@ describe('writeIndex()', () => {
     const indexFilePath = path.resolve(fixturesPath, 'mixed/index.js');
 
     removeFile(indexFilePath);
-    writeIndex([path.resolve(fixturesPath, 'mixed')]);
+    writeIndex([path.resolve(fixturesPath, 'mixed')], {noExtension: true});
     const indexCode = readFile(indexFilePath);
 
     expect(indexCode).to.equal(codeExample(`
@@ -51,7 +51,7 @@ export default {
     appendToFile(indexFilePath, ignoredExportLine);
     expect(readFile(indexFilePath).includes(ignoredExportLine)).to.equal(true);
 
-    writeIndex([path.resolve(fixturesPath, 'with-config')]);
+    writeIndex([path.resolve(fixturesPath, 'with-config')], {noExtension: true});
     const indexCode = readFile(indexFilePath);
 
     expect(indexCode).to.equal(codeExample(`

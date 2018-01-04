@@ -71,6 +71,8 @@ const removeIgnoredFiles = (files, ignorePatterns = []) => {
   });
 };
 
+export {stripExtension};
+
 export default (directoryPath, options = {}) => {
   if (!validateTargetDirectory(directoryPath, {silent: options.silent})) {
     return false;

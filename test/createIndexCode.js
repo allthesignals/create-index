@@ -44,7 +44,7 @@ export default {
   });
   context('file with extension', () => {
     it('removes the extension from the export statement', () => {
-      const indexCode = createIndexCode(['foo.js']);
+      const indexCode = createIndexCode(['foo.js'], {noExtension: true});
 
       expect(indexCode).to.equal(codeExample(`
 // @create-index

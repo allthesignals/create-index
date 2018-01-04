@@ -45,6 +45,13 @@ const argv = yargs
       type: 'array'
     }
   })
+  .options({
+    noExtension: {
+      alias: 'nx',
+      description: 'Removes extensions in output.',
+      type: 'boolean'
+    }
+  })
   .example('create-index ./src ./src/utilities', 'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.')
   .example('create-index --update ./src ./tests', 'Finds all create-index index files in the target directories and descending directories. Updates found index files.')
   .example('create-index ./src --extensions js jsx', 'Creates or updates an existing create-index index file in the target (./src) directory for both .js and .jsx extensions.')
@@ -54,6 +61,7 @@ writeIndexCli(argv._, {
   banner: argv.banner,
   extensions: argv.extensions,
   ignoreUnsafe: argv.ignoreUnsafe,
+  noExtension: argv.noExtension,
   recursive: argv.recursive,
   updateIndex: argv.update
 });
