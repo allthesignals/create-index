@@ -64,4 +64,25 @@ export default {
 };
     `));
   });
+
+  it('creates dash-case index with config excluding extensions', () => {
+    const indexFilePath = path.resolve(fixturesPath, 'with-config-nx/index.js');
+
+    writeIndex([path.resolve(fixturesPath, 'with-config-nx')], {noExtension: true});
+    const indexCode = readFile(indexFilePath);
+
+    expect(indexCode).to.equal(codeExample(`
+// @create-index
+
+import bar from './bar';
+import foo from './foo';
+import fooBar from './foo-bar';
+
+export default {
+  bar,
+  foo,
+  fooBar,
+};
+    `));
+  });
 });

@@ -12,6 +12,8 @@ const safeVariableName = (fileName) => {
 };
 
 const buildExportBlock = (files) => {
+  // eslint-disable-next-line
+  console.log(files);
   const safeFiles = _.map(files, (fileName) => {
     return _.camelCase(safeVariableName(fileName));
   });
