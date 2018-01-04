@@ -48,6 +48,7 @@ const argv = yargs
   .options({
     noExtension: {
       alias: 'nx',
+      default: false,
       description: 'Removes extensions in output.',
       type: 'boolean'
     }
